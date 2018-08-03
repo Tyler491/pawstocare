@@ -6,7 +6,7 @@
 </head>
 <body>
         
-    <?php include 'navbar.html'; ?>
+    <?php include 'php/navbar.php'; ?>
 
     <!--Contact Information Page Header-->
     <h2 class="text-center my-4">Our Contact Information</h2>

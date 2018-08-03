@@ -4,19 +4,17 @@
     <meta charset="utf-8">
     <title>Paws to Care</title>
 </head>
-<body>
+<body class="cats">
            
-    <?php include 'navbar.html'; ?>
+    <?php include 'php/navbar.php'; ?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Cats</h2>
 
-    <div class="container" id="tableDiv">
+    <div class="container tableDiv" id="tableDiv">
         <table id="table" class="table table-striped table-bordered table-light">
             <thead class="thead-light">
                 <tr>
-                    <button type="button" class="btn float-right" onclick="clearCats()" style="background-color: #C7C7C7; color: #525050;">Clear</button>
-                    <button type="button" class="btn float-right" onclick="filterCats()" style="background-color: #C7C7C7; color: #525050;">Filter</button>
                     <th>
                         <input type="text" class="form-control" id="nameFilter" placeholder="filter">
                     </th>
@@ -55,8 +53,8 @@
                             </label>
                         </div>
                     </th>
-                    <th></th>
-                    <th></th>
+                    <th><button type="button" class="btn float-right" onclick="filterCats()" style="background-color: #C7C7C7; color: #525050;">Filter</button></th>
+                    <th><button type="button" class="btn float-right" onclick="clearCats()" style="background-color: #C7C7C7; color: #525050;">Clear</button></th>
                 </tr>
                 <tr id="headerRow">
                     <th scope="col" class="text-nowrap py-0"><span class="font-weight-bold btn" title="Name of the cat" onclick="sortNames()">Name</span>
@@ -93,10 +91,18 @@
                     </th>
                 </tr>
             </thead>
-            <tbody id="tableBody">
-            </tbody>
+            <tbody id="tableBody"></tbody>
         </table>
     </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <ul id="ulPaginate" class="pagination"></ul>
+            <div></div>
+            <select id="selectPage" class="form-control col-1" onchange="selectPage()"></select>
+        </div>
+    </div>
+
    
 
 
@@ -106,6 +112,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <link href="/css/style.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="/javascript/tables.js"></script>
-    <script type="text/javascript" src="/javascript/cats.js"></script>
+    <script type="text/javascript" src="/javascript/cats.js"></script>-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+
 </body>
 </html>

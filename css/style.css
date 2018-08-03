@@ -10,3 +10,28 @@ nav{
 .dropdown-menu{
     background-color: #AD0606;
 }
+
+.page-link{
+    background-color: lightgray;
+    color: #525050;   
+    width: 60px;
+}
+.nav-li > button{
+    width: 90px;
+}
+
+cats > tbody > tr{
+    height: 100px;
+}
+dogs > tbody > tr{
+    height: 125px;
+}
+td {
+    text-align: center;
+    vertical-align: middle !important;
+  }
+
+  th{
+    text-align: center;
+  }
+

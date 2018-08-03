@@ -10,6 +10,7 @@ function fillTable(animals){
             let data = animal[field];
             let id = animal['id'];
             if (field == 'owners'){
+                if (data == '') data = "No Owners"
                 let modal = '<div class="modal" id="ownersModal'+id+'" tabindex="-1" role="dialog" aria-hidden="true">'+
                   '<div class="modal-dialog modal-dialog-centered" role="document">'+
                   '<div class="modal-content">'+
@@ -18,12 +19,15 @@ function fillTable(animals){
                     '<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">'+
                       '<span aria-hidden="true">&times;</span>'+
                     '</button></div>'+
-                  '<div class="modal-body">'+data+'</div></div></div></div>';
+                  '<div class="modal-body">';
+                  for(let owner in data) modal += data[owner];
+                  modal+='</div></div></div></div>';
                 let span = '<span class="btn" data-toggle="modal" data-target="#ownersModal'+id+'">Show</span>';
                 cell.innerHTML = span + modal;
             }
             else if (field == 'notes'){
                 if (data == '') data = 'No Notes';
+
                 let modal = '<div class="modal" id="notesModal'+id+'" tabindex="-1" role="dialog" aria-hidden="true">'+
                   '<div class="modal-dialog modal-dialog-centered" role="document">'+
                   '<div class="modal-content">'+
@@ -32,7 +36,9 @@ function fillTable(animals){
                     '<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">'+
                       '<span aria-hidden="true">&times;</span>'+
                     '</button></div>'+
-                  '<div class="modal-body">'+data+'</div></div></div></div>';
+                  '<div class="modal-body">';
+                  for(let note in data) modal += data[note];
+                  modal+='</div></div></div></div>';
                 let span = '<span class="btn" data-toggle="modal" data-target="#notesModal'+id+'">Show</span>';
                 cell.innerHTML = span + modal;
             }

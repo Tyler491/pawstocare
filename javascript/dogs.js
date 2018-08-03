@@ -1,6 +1,7 @@
 //Array vaiables for master dog list and dogs being displayed
 let dogs = [];
 let displayDogs = [];
+let currentPage = 1;
 
 //Boolean variables based on if a feild is sorted
 let nameSortDescend = false;
@@ -30,7 +31,7 @@ parseDogJson();
 function parseDogJson(){
   let fields = [];
   var dogsJson = new XMLHttpRequest();
-  var url = "/database/dogs.json";
+  var url = "php/dogData.php";
   dogsJson.onload = function() {
     buildDogTable(JSON.parse(this.responseText));
 };
@@ -42,7 +43,8 @@ dogsJson.send();
 function buildDogTable(dogsData){
   dogs = dogsData;
   displayDogs = dogs;
-  fillTable(displayDogs);
+  newPage(1);
+  fillTable(displayDogs.slice(0,9));
 }
 
 
@@ -124,7 +126,8 @@ function sortNames(){
     ascendTri.classList.remove('invisible');
     nameSortAscend = true;
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 function sortBreeds(){
@@ -151,7 +154,8 @@ function sortBreeds(){
     breedSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
  
 function sortSex(){
@@ -178,7 +182,8 @@ function sortSex(){
     sexSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 function sortShots(){
@@ -205,7 +210,8 @@ function sortShots(){
     shotsSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 function sortAge(){
@@ -237,7 +243,8 @@ function sortAge(){
     ageSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 function sortSize(){
@@ -264,7 +271,8 @@ function sortSize(){
     sizeSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 function sortLicensed(){
@@ -291,7 +299,8 @@ function sortLicensed(){
     licensedSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 function sortNeutered(){
@@ -318,7 +327,8 @@ function sortNeutered(){
     neuteredSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 
@@ -347,7 +357,8 @@ function filterDogs(){
     if (neutered && !dog['neutered']){continue;}
     displayDogs.push(dog);
   }
-  fillTable(displayDogs);
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
 }
 
 //Funciton to clear search feilds and reset dog table
@@ -360,5 +371,81 @@ function clearDogs(){
   document.getElementById('licensedFilter').checked = false;
   document.getElementById('neuteredFilter').checked = false;
   displayDogs = dogs;
-  fillTable(displayDogs)
+  fillTable(displayDogs.slice(0,9));
+  newPage(1);
+}
+
+function paginate(){
+  let liString = '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage-1)+')">Previous</a></li>';
+  let ul = document.getElementById('ulPaginate');
+  $(ul).empty();
+  let pages = Math.floor(displayDogs.length/10);
+  if (displayDogs.length%10 != 0) pages+=1;
+
+  if(pages >= 5){
+    if(currentPage < 3){
+      for(let i = 0; i < 5; i++){
+        if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</a></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</a></li>';
+      }
+    }
+    else if(currentPage > (pages - 2)){
+      for(let i = pages - 4; i < pages + 1; i++){
+        if(i == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ currentPage + '</a></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + i + ')">'+ i + '</a></li>';
+      }
+    }
+    else{
+      let pageIndex = -2;
+      for(let i = 0; i < 5; i++){
+        if(i+1 == 3) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage + pageIndex++) + '</a></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + (currentPage + pageIndex) + ')">'+ (currentPage + pageIndex++) + '</a></li>';
+      }
+    }
+  }
+  else{
+    for(let i = 0; i < pages; i++){
+      if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</a></li>';
+      else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</a></li>';
+    }
+  }
+
+  liString += '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage+1)+')">Next</a></li>';
+  ul.innerHTML = liString;
+}
+
+function addSelect(){
+  let selectPage = document.getElementById('selectPage');
+  let selectString = '<option class="page-link">01</option>';
+  let pages = Math.floor(displayDogs.length/10);
+  if (displayDogs.length%10 != 0) pages+=1;
+  let selectPages = Math.floor(pages/10);
+  
+  for(let i = 0; i < selectPages; i++){
+    selectString += '<option class="page-link">'+((i+1)*10)+'</option>';
+  }
+  selectPage.innerHTML = selectString;
+
+}
+
+function selectPage(){
+  let selectPage = document.getElementById('selectPage');
+  let index = selectPage.selectedIndex;
+  if(index == 0) newPage(1);
+  else newPage(index*10);
+  selectPage.selectedIndex = index;
+}
+
+function newPage(pageNumber){
+  let pages = Math.floor(displayDogs.length/10);
+  if (displayDogs.length%10 != 0) pages+=1;
+
+  if (pageNumber > 0 && pageNumber < pages+1){
+    currentPage = pageNumber;
+    let startDog = (currentPage-1)*10;
+    fillTable(displayDogs.slice(startDog,startDog+9));
+    addSelect();
+    paginate();
+  }
+
 }

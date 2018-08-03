@@ -1,5 +1,6 @@
 let cats;
 let displayCats = [];
+let currentPage = 1;
 
 let nameSortDescend = false;
 let nameSortAscend = false;
@@ -34,7 +35,8 @@ catsJson.send();
 function buildCatTable(catsData){
   cats = catsData;
   displayCats = cats;
-  fillTable(displayCats);
+  newPage(1);
+  fillTable(displayCats.slice(0,9));
 }
 
 
@@ -110,7 +112,8 @@ function sortNames(){
     nameSortAscend = true;
   }
   
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function sortBreeds(){
@@ -137,7 +140,8 @@ function sortBreeds(){
     breedSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
  
 function sortSex(){
@@ -164,7 +168,8 @@ function sortSex(){
     sexSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function sortShots(){
@@ -191,7 +196,8 @@ function sortShots(){
     shotsSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function sortAge(){
@@ -223,7 +229,8 @@ function sortAge(){
     ageSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function sortSize(){
@@ -250,7 +257,8 @@ function sortSize(){
     sizeSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function sortNeutered(){
@@ -277,7 +285,8 @@ function sortNeutered(){
     neuteredSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function sortDeclawed(){
@@ -304,7 +313,8 @@ function sortDeclawed(){
     declawedSortAscend = true;
     ascendTri.classList.remove('invisible');
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function filterCats(){
@@ -331,7 +341,8 @@ function filterCats(){
     if (neutered && !cat['neutered']){continue;}
     displayCats.push(cat);
   }
-  fillTable(displayCats);
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
 
 function clearCats(){
@@ -343,5 +354,82 @@ function clearCats(){
   document.getElementById('declawedFilter').checked = false;
   document.getElementById('neuteredFilter').checked = false;
   displayCats = cats;
-  fillTable(displayCats)
+  fillTable(displayCats.slice(0,9));
+  newPage(1);
 }
+
+function paginate(){
+  let liString = '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage-1)+')">Previous</a></li>';
+  let ul = document.getElementById('ulPaginate');
+  $(ul).empty();
+  let pages = Math.floor(displayCats.length/10);
+  if (displayCats.length%10 != 0) pages+=1;
+
+  if(pages >= 5){
+    if(currentPage < 3){
+      for(let i = 0; i < 5; i++){
+        if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</a></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</a></li>';
+      }
+    }
+    else if(currentPage > (pages - 2)){
+      for(let i = pages - 4; i < pages + 1; i++){
+        if(i == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ currentPage + '</a></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + i + ')">'+ i + '</a></li>';
+      }
+    }
+    else{
+      let pageIndex = -2;
+      for(let i = 0; i < 5; i++){
+        if(i+1 == 3) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage + pageIndex++) + '</a></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + (currentPage + pageIndex) + ')">'+ (currentPage + pageIndex++) + '</a></li>';
+      }
+    }
+  }
+  else{
+    for(let i = 0; i < pages; i++){
+      if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</a></li>';
+      else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</a></li>';
+    }
+  }
+
+  liString += '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage+1)+')">Next</a></li>';
+  ul.innerHTML = liString;
+}
+
+function addSelect(){
+  let selectPage = document.getElementById('selectPage');
+  let selectString = '<option class="page-link">01</option>';
+  let pages = Math.floor(displayCats.length/10);
+  if (displayCats.length%10 != 0) pages+=1;
+  let selectPages = Math.floor(pages/10);
+  
+  for(let i = 0; i < selectPages; i++){
+    selectString += '<option class="page-link">'+((i+1)*10)+'</option>';
+  }
+  selectPage.innerHTML = selectString;
+
+}
+
+function selectPage(){
+  let selectPage = document.getElementById('selectPage');
+  let index = selectPage.selectedIndex;
+  if(index == 0) newPage(1);
+  else newPage(index*10);
+  selectPage.selectedIndex = index;
+}
+
+function newPage(pageNumber){
+  let pages = Math.floor(displayCats.length/10);
+  if (displayCats.length%10 != 0) pages+=1;
+
+  if (pageNumber > 0 && pageNumber < pages+1){
+    currentPage = pageNumber;
+    let startCat = (currentPage-1)*10;
+    fillTable(displayCats.slice(startCat,startCat+9));
+    addSelect();
+    paginate();
+  }
+
+}
+

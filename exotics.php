@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>Paws to Care</title>
 </head>
-<body>
+<body class="exotic">
 
-    <?php include 'navbar.html'; ?>
+    <?php include 'php/navbar.php'; ?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Exotics</h2>
@@ -15,34 +15,36 @@
         <table id="table" class="table table-striped table-bordered table-light">
             <thead class="thead-light">
                 <tr>
-                    <button type="button" class="btn float-right" onclick="clearExotics()" style="background-color: #C7C7C7; color: #525050;">Clear</button>
-                    <button type="button" class="btn float-right" onclick="filterExotics()" style="background-color: #C7C7C7; color: #525050;">Filter</button>
                     <th>
-                        <input type="text" class="form-control" id="nameFilter" placeholder="filter">
+                        <div class="d-flex justify-content-center">
+                            <input type="text" class="form-control justify-content-center" id="nameFilter" placeholder="filter" style="width: 125px;">
+                        </div>
                     </th>
                     <th>
-                        <input type="text" class="form-control" id="speciesFilter" placeholder="filter">
+                        <div class="d-flex justify-content-center">
+                            <input type="text" class="form-control" id="speciesFilter" placeholder="filter" style="width: 125px;">
+                        </div>
                     </th>
                     <th>
-                        <div class="form-check text-left">
-                            <label class="form-check-label mx-lg-3">
-                                <input type="checkbox" class="form-check-input" id="maleFilter" onclick="switchMaleSex()">Male
+                        <div class="form-check">
+                            <label class="form-check-label mx-3">
+                                    <input type="checkbox" class="form-check-input" id="maleFilter" onclick="switchMaleSex()">Male
                             </label>
-                            <label class="form-check-label mx-lg-3">
+                            <label class="form-check-label mx-3">
                                 <input type="checkbox" class="form-check-input" id="femaleFilter" onclick="switchFemaleSex()">Female
                             </label>
                         </div>
                     </th>
                     <th></th>
-                    <th></th>
-                    <th></th>
+                    <th><button type="button" class="btn" onclick="filterExotics()" style="background-color: #C7C7C7; color: #525050;">Filter</button></th>
+                    <th><button type="button" class="btn" onclick="clearExotics()" style="background-color: #C7C7C7; color: #525050;">Clear</button></th>
                 </tr>
                 <tr id="headerRow">
                     <th scope="col" class="text-nowrap py-0"><span class="font-weight-bold btn" title="Name of the animal" onclick="sortNames()">Name</span>
                         <span id="nameAscend" class="invisible">▲</span>
                         <span id="nameDescend" class="d-none">▼</span>
                     </th>
-                    <th scope="col" class="text-nowrap py-0"><span class="font-weight-bold btn" title="Species of the animal" onclick="sortSpecies()">Species</span>
+                    <th scope="col" class="text-nowrap py-0"><span class="font-weight-bold btn mx-5" title="Species of the animal" onclick="sortSpecies()">Species</span>
                         <span id="speciesAscend" class="invisible">▲</span>
                         <span id="speciesDescend" class="d-none">▼</span>
                     </th> 
@@ -50,7 +52,7 @@
                         <span id="sexAscend" class="invisible">▲</span>
                         <span id="sexDescend" class="d-none">▼</span>
                     </th>
-                    <th scope="col" class="text-nowrap py-0"><span class="font-weight-bold btn" title="Age of the animal" onclick="sortAge()">Age</span>
+                    <th scope="col" class="text-nowrap py-0"><span class="font-weight-bold btn mx-1" title="Age of the animal" onclick="sortAge()">Age</span>
                         <span id="ageAscend" class="invisible">▲</span>
                         <span id="ageDescend" class="d-none">▼</span>
                     </th>
@@ -63,6 +65,14 @@
             <tbody id="tableBody">
             </tbody>
         </table>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <ul id="ulPaginate" class="pagination"></ul>
+            <div></div>
+            <select id="selectPage" class="form-control col-1" onchange="selectPage()"></select>
+        </div>
     </div>
    
 

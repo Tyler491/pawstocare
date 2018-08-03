@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>Paws to Care</title>
 </head>
-<body>
+<body class="dogs">
        
-    <?php include 'navbar.html'; ?>
+    <?php include 'php/navbar.php'; ?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Dogs</h2>
@@ -15,13 +15,11 @@
         <table id="table" class="table table-striped table-bordered table-light">
             <thead class="thead-light">
                 <tr>
-                    <button type="button" class="btn float-right" onclick="clearDogs()" style="background-color: #C7C7C7; color: #525050;">Clear</button>
-                    <button type="button" class="btn float-right" onclick="filterDogs()" style="background-color: #C7C7C7; color: #525050;">Filter</button>
                     <th>
-                        <input type="text" class="form-control" id="nameFilter" placeholder="name">
+                        <input type="text" class="form-control" id="nameFilter" placeholder="filter">
                     </th>
                     <th>
-                        <input type="text" class="form-control" id="breedFilter" placeholder="breed">
+                        <input type="text" class="form-control" id="breedFilter" placeholder="filter">
                     </th>
                     <th>
                         <div class="form-check text-left">
@@ -59,8 +57,10 @@
                         </div>
                     </th>
                     <th>
+                        <button type="button" class="btn float-right" onclick="filterDogs()" style="background-color: #C7C7C7; color: #525050;">Filter</button>
                     </th>
                     <th>
+                        <button type="button" class="btn float-right" onclick="clearDogs()" style="background-color: #C7C7C7; color: #525050;">Clear</button>
                     </th>
                 </tr>
                 <tr id="headerRow">
@@ -106,6 +106,15 @@
             </tbody>
         </table>
     </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <ul id="ulPaginate" class="pagination"></ul>
+            <div></div>
+            <select id="selectPage" class="form-control col-1" onchange="selectPage()"></select>
+        </div>
+    </div>
+
    
 
 
@@ -116,6 +125,5 @@
     <link href="/css/style.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="/javascript/tables.js"></script>
     <script type="text/javascript" src="/javascript/dogs.js"></script>
-    <script type="text/javascript" src="/javascript/faker.js-4.1.0"></script>
 </body>
 </html>

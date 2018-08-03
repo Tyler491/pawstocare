@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <?php include 'navbar.html'; ?>
+    <?php include 'php/navbar.php'; ?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center mt-4 mb-5">Paws to Care Veterinarian</h2>
