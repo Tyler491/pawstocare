@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <title>Paws to Care</title>
 </head>
-<body class="cats">
+<body">
            
-    <?php include 'php/navbar.php'; ?>
+    <?php include 'php/navbar.php';?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Cats</h2>
 
     <div class="container tableDiv" id="tableDiv">
-        <table id="table" class="table table-striped table-bordered table-light">
+        <table id="table" class="table table-striped table-bordered table-light cats">
             <thead class="thead-light">
                 <tr>
                     <th>
@@ -111,9 +111,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) echo<<<EOT
     <script type="text/javascript" src="/javascript/tables.js"></script>
     <script type="text/javascript" src="/javascript/cats.js"></script>-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
-
+EOT;
+    ?>
 </body>
 </html>

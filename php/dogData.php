@@ -9,11 +9,6 @@
         die("Failed to connect ot MySQL: ($pawsToCare->connect_errno)
         $pawsToCare->connect_error");
     }
-    $sql = "SELECT * FROM dogs;";
-    $result = $pawsToCare->query($sql);
-    if (!$result) {
-        die("Error executing query: ($pawsToCare->errno) $pawsToCare->error<br>SQL = $sql");
-    }
 
     $dogs = array();
     while ($row = $result->fetch_row()) {

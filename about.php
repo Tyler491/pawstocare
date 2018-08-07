@@ -6,7 +6,7 @@
 </head>
 <body>
         
-    <?php include 'php/navbar.phpl'; ?>
+    <?php include 'php/navbar.php'; ?>
 
     <!--About Us Page Header-->
     <h2 class="text-center my-4">About Us</h2>

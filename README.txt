@@ -8,22 +8,23 @@ What has been done so far:
 -Added login drop down menu
 -Formatted checks and x's in tables
 -Add pagination for tables
-
-What still needs to be done:
 -Add authentication for owners and admins
 -Format notes for tables
 -Create owners page (server side rendering)
+
+What still needs to be done:
+
 -Create test suite using jasmine
 -Finalize project
 
 
 
-Authentication for the login bar was scheduled for milestone 1 but has been pushed back to the final product in exchange for formatting the x's and checks on the tables.
+Authentication for the login bar was scheduled for milestone 1 but has been pushed back to the final product in exchange for formatting the x's and checks on the tables. (Now finished August 7, 2018)
 
-The current files are using username: tyler and password: 4321 to login to the database, should be changes as a final step.
+The current files are using username: tyler and password: 4321 to login to the database, should be changes as a final step to a Paws to Care Employee.
 
-The login dropdown menu still looks a little off, will continue to adjust it until it looks better.
+Animals and Owner tables now are paginated to 10 animals a page. HTML selection dropdown element will select a page that is a multiple of 10. There are also previous and next buttons for single page navigation.
 
-Animal tables now are paginated to 10 animals a page. Page selection range is 5 pages with a dropdown that will select a page that is a multiple of 10. There are also previous and next buttons for single page navigation.
+Website is using a LAMP server to run right now (tested using docker). 
 
 

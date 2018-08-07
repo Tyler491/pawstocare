@@ -15,7 +15,6 @@ let ageSortAscend = false;
 parseExoticJson();
 
 function parseExoticJson(){
-  let fields = [];
   var exoticsJson = new XMLHttpRequest();
   var url = "php/exoticData.php";
   exoticsJson.onload = function() {
@@ -212,7 +211,7 @@ function clearExotics(){
 }
 
 function paginate(){
-  let liString = '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage-1)+')">Previous</a></li>';
+  let liString = '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage-1)+')">Previous</button></li>';
   let ul = document.getElementById('ulPaginate');
   $(ul).empty();
   let pages = Math.floor(displayExotics.length/10);
@@ -221,32 +220,32 @@ function paginate(){
   if(pages >= 5){
     if(currentPage < 3){
       for(let i = 0; i < 5; i++){
-        if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</a></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</a></li>';
+        if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</button></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</button></li>';
       }
     }
     else if(currentPage > (pages - 2)){
       for(let i = pages - 4; i < pages + 1; i++){
-        if(i == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ currentPage + '</a></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + i + ')">'+ i + '</a></li>';
+        if(i == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ currentPage + '</button></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + i + ')">'+ i + '</button></li>';
       }
     }
     else{
       let pageIndex = -2;
       for(let i = 0; i < 5; i++){
-        if(i+1 == 3) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage + pageIndex++) + '</a></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + (currentPage + pageIndex) + ')">'+ (currentPage + pageIndex++) + '</a></li>';
+        if(i+1 == 3) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage + pageIndex++) + '</button></li>';
+        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + (currentPage + pageIndex) + ')">'+ (currentPage + pageIndex++) + '</button></li>';
       }
     }
   }
   else{
     for(let i = 0; i < pages; i++){
-      if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</a></li>';
-      else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</a></li>';
+      if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</button></li>';
+      else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</button></li>';
     }
   }
 
-  liString += '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage+1)+')">Next</a></li>';
+  liString += '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage+1)+')">Next</button></li>';
   ul.innerHTML = liString;
 }
 

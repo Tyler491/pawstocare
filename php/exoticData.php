@@ -23,7 +23,6 @@
             "name"=>  $row[1],
             "species"=>  $row[2],
             "sex"=>  $row[3],
-            //"neutered"=>  (bool)$row[4],
             "age"=> date("m-d-Y", strtotime($row[5])),
             "owners"=> [],
             "notes"=> []
