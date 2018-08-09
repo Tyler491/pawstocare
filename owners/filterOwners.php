@@ -6,5 +6,6 @@
     $_SESSION["city"] = $_POST['city'];
     $_SESSION["st"] = $_POST['state'];
     $_SESSION["zip"] = $_POST['zip'];
+    $_SESSION["owners"] = ['empty'];
     header('Location:/owners.php');
 ?>

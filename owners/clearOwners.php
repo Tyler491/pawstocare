@@ -5,7 +5,7 @@
     $_SESSION["city"] = "";
     $_SESSION["st"] = "";
     $_SESSION["zip"] = "";
-    $_SESSION["owners"] = [];
+    $_SESSION["owners"] = ['empty'];
     $_SESSION["sortName"] = 0;
     $_SESSION["sortAddress"] = 0;
     $_SESSION["sortCity"] = 0;

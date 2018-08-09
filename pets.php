@@ -7,7 +7,7 @@
 <body id="petsBody">
     
     <?php include 'php/navbar.php'; ?>
-    
+    <?php if($_SESSION['loggedin'] == false) echo '<div class="alert alert-danger text-center" role="alert"><strong>Not Logged In</strong></div>';?>
     <div class="container" id="dogTable"></div>
     <div class="container" id="catTable"></div>
     <div class="container" id="exoticTable"></div>

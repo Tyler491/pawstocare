@@ -7,6 +7,7 @@
     if($_SESSION['sortCity'] == 0) $_SESSION['sortCity'] = 1;
     else if($_SESSION['sortCity'] == 1) $_SESSION['sortCity'] = 2;
     else if($_SESSION['sortCity'] == 2) $_SESSION['sortCity'] = 1;
+    $_SESSION['owners'] = ['empty'];
     $_SESSION['page'] = 1;
     header('Location:/owners.php');
 ?>

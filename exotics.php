@@ -7,6 +7,7 @@
 <body class="exotic">
 
     <?php include 'php/navbar.php'; ?>
+    <?php if($_SESSION['loggedin'] == false) echo '<div class="alert alert-danger text-center" role="alert"><strong>Not Logged In</strong></div>';?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Exotics</h2>

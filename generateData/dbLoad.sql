@@ -1,0 +1,44 @@
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/cats.csv" 
+INTO TABLE cats FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/dogs.csv" 
+INTO TABLE dogs FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/exotics.csv" 
+INTO TABLE exotics FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/owners.csv" 
+INTO TABLE owners FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/catNotes.csv" 
+INTO TABLE catNotes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/dogNotes.csv" 
+INTO TABLE dogNotes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/ownerNotes.csv" 
+INTO TABLE ownerNotes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/exoticNotes.csv" 
+INTO TABLE exoticNotes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/catOwners.csv" 
+INTO TABLE catsOwners FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/dogOwners.csv" 
+INTO TABLE dogsOwners FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE "/var/www/html/generateData/csv/exoticOwners.csv" 
+INTO TABLE exoticsOwners FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED 
+BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS;

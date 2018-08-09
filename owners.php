@@ -9,13 +9,16 @@
            
     <?php
         include 'php/navbar.php';
+        if($_SESSION['loggedin'] == false) header('Location:/index.php');;
+        
         if(!isset($_SESSION["lname"]))$_SESSION["lname"] = "";
+
         if(!isset($_SESSION["address"])) $_SESSION["address"] = "";
         if(!isset($_SESSION["city"])) $_SESSION["city"] = "";
         if(!isset($_SESSION["st"])) $_SESSION["st"] = "";
         if(!isset($_SESSION["zip"])) $_SESSION["zip"] = "";
         if(!isset($_SESSION["page"])) $_SESSION["page"] = 1;
-        if(!isset($_SESSION["owners"])) $_SESSION["owners"] = [];
+        if(!isset($_SESSION["owners"])) $_SESSION["owners"] = ['empty'];
         if(isset($_POST['selectPage'])) echo $_POST['selectPage']."<br>";
 
         if(!isset($_SESSION["sortName"])) $_SESSION["sortName"] = 0;
@@ -35,10 +38,11 @@
             $pawsToCare->connect_error");
         }
 
+        if($_SESSION['owners'] == ['empty']){
         //Get all owners (with or without filters)
         $_SESSION['owners'] = [];
         $query = "SELECT id, fname, lname, add1, add2, city, st, zip FROM owners ";
-        $query = $query.'WHERE lname LIKE "'.$_SESSION["lname"].'%" AND add1 LIKE "'.$_SESSION["address"].'%" AND city LIKE "'.$_SESSION["city"].'%"AND st LIKE "'.$_SESSION["st"].'%" AND zip LIKE "'.$_SESSION["zip"].'%"';
+        $query = $query.'WHERE (lname LIKE "'.$_SESSION["lname"].'%" OR fname LIKE "'.$_SESSION["lname"].'") AND add1 LIKE "'.$_SESSION["address"].'%" AND city LIKE "'.$_SESSION["city"].'%"AND st LIKE "'.$_SESSION["st"].'%" AND zip LIKE "'.$_SESSION["zip"].'%"';
         
         if($_SESSION['sortName'] == 1) $query = $query." ORDER BY lname ASC, fname ASC;";
         else if($_SESSION['sortName'] == 2) $query = $query." ORDER BY lname DESC, fname DESC;";
@@ -59,7 +63,7 @@
 
         $result = $pawsToCare->query($query);
         if (!$result) {
-            die("<br><br>Error executing query: ($pawsToCare->errno) $pawsToCare->error<br>SQL = $sql");
+            die("<br><br>Error executing query: ($pawsToCare->errno) $pawsToCare->error<br>SQL = $query");
         }
         while ($row = $result->fetch_row()){
 
@@ -119,6 +123,7 @@
         $_SESSION["ownersNumber"] = count($_SESSION['owners']);
         $_SESSION["pages"] = intdiv($_SESSION["ownersNumber"], 10);
         if($_SESSION["ownersNumber"] % 10 != 0) $_SESSION["pages"] += 1;
+        }
     ?>
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Owners</h2>
@@ -228,7 +233,7 @@ EOT;
                             echo "&emsp;".$_SESSION['owners'][$minIndex][9][$a].'<br>';
                         }
                         for($a = 0; $a < count($_SESSION['owners'][$minIndex][10]); $a++){
-                            if($a == 0) echo "<b>Exoticss:</b><br>";
+                            if($a == 0) echo "<b>Exotics:</b><br>";
                             echo "&emsp;".$_SESSION['owners'][$minIndex][10][$a].'<br>';
                         }
                         echo '</div></div></div></div><span class="btn" data-toggle="modal" data-target="#petsModal'.$i.'">Show</span></td><td>';

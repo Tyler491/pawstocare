@@ -1,6 +1,6 @@
 let cats;
 let displayCats = [];
-let currentPage = 1;
+let currentPageCats = 1;
 
 let nameSortDescend = false;
 let nameSortAscend = false;
@@ -23,7 +23,7 @@ parseCatJson();
 
 function parseCatJson(){
   var catsJson = new XMLHttpRequest();
-  var url = "php/catData.php";
+  var url = "/php/catData.php";
   catsJson.onload = function() {
     buildCatTable(JSON.parse(this.responseText));
 };
@@ -35,7 +35,7 @@ function buildCatTable(catsData){
   cats = catsData;
   displayCats = cats;
   newPage(1);
-  fillTable(displayCats.slice(0,9));
+  console.log(displayCats);
 }
 
 
@@ -358,41 +358,41 @@ function clearCats(){
 }
 
 function paginate(){
-  let liString = '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage-1)+')">Previous</button></li>';
+  let liString = `<li class="page-item nav-li"><button class="page-link" onclick="newPage((${currentPageCats-1}))">Previous</button></li>`;
   let ul = document.getElementById('ulPaginate');
   $(ul).empty();
   let pages = Math.floor(displayCats.length/10);
   if (displayCats.length%10 != 0) pages+=1;
 
   if(pages >= 5){
-    if(currentPage < 3){
+    if(currentPageCats < 3){
       for(let i = 0; i < 5; i++){
-        if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</button></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</button></li>';
+        if(i+1 == currentPageCats) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageCats}</button></li>`;
+        else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${i+1})">${i+1}</button></li>`;
       }
     }
-    else if(currentPage > (pages - 2)){
+    else if(currentPageCats > (pages - 2)){
       for(let i = pages - 4; i < pages + 1; i++){
-        if(i == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ currentPage + '</button></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + i + ')">'+ i + '</button></li>';
+        if(i == currentPageCats) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageCats}</button></li>`;
+        else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${i})">${i}</button></li>`;
       }
     }
     else{
       let pageIndex = -2;
       for(let i = 0; i < 5; i++){
-        if(i+1 == 3) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage + pageIndex++) + '</button></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + (currentPage + pageIndex) + ')">'+ (currentPage + pageIndex++) + '</button></li>';
+        if(i+1 == 3) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageCats + pageIndex++}</button></li>`;
+        else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${currentPageCats + pageIndex})">${currentPageCats + pageIndex++}</button></li>`;
       }
     }
   }
   else{
     for(let i = 0; i < pages; i++){
-      if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</button></li>';
-      else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</button></li>';
+      if(i+1 == currentPageCats) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageCats}</button></li>`;
+      else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${i+1})">${i+1}</button></li>`;
     }
   }
 
-  liString += '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage+1)+')">Next</button></li>';
+  liString = `${liString}<li class="page-item nav-li"><button class="page-link" onclick="newPage(${currentPageCats+1})">Next</button></li>`;
   ul.innerHTML = liString;
 }
 
@@ -404,7 +404,7 @@ function addSelect(){
   let selectPages = Math.floor(pages/10);
   
   for(let i = 0; i < selectPages; i++){
-    selectString += '<option class="page-link">'+((i+1)*10)+'</option>';
+    selectString = `${selectString}<option class="page-link">${(i+1)*10}</option>`;
   }
   selectPage.innerHTML = selectString;
 
@@ -423,8 +423,8 @@ function newPage(pageNumber){
   if (displayCats.length%10 != 0) pages+=1;
 
   if (pageNumber > 0 && pageNumber < pages+1){
-    currentPage = pageNumber;
-    let startCat = (currentPage-1)*10;
+    currentPageCats = pageNumber;
+    let startCat = (currentPageCats-1)*10;
     fillTable(displayCats.slice(startCat,startCat+9));
     addSelect();
     paginate();

@@ -10,37 +10,37 @@ function fillTable(animals){
             let data = animal[field];
             let id = animal['id'];
             if (field == 'owners'){
-                if (data == '') data = "No Owners"
-                let modal = '<div class="modal" id="ownersModal'+id+'" tabindex="-1" role="dialog" aria-hidden="true">'+
-                  '<div class="modal-dialog modal-dialog-centered" role="document">'+
-                  '<div class="modal-content">'+
-                  '<div class="modal-header">'+
-                    '<h6 class="modal-title">Owners</h6>'+
-                    '<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">'+
-                      '<span aria-hidden="true">&times;</span>'+
-                    '</button></div>'+
-                  '<div class="modal-body">';
-                  for(let owner in data) modal += data[owner];
-                  modal+='</div></div></div></div>';
-                let span = '<span class="btn" data-toggle="modal" data-target="#ownersModal'+id+'">Show</span>';
-                cell.innerHTML = span + modal;
+                if (data == '') data = "No Owners";
+                let modal = `<div class="modal" id="ownersModal${id}" tabindex="-1" role="dialog" aria-hidden="true">`;
+                modal =`${modal}<div class="modal-dialog modal-dialog-centered" role="document">`;
+                modal =`${modal}<div class="modal-content">`;
+                modal =`${modal}<div class="modal-header">`;
+                modal =`${modal}<h6 class="modal-title">Owners</h6>`;
+                modal =`${modal}<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">`;
+                modal =`${modal}<span aria-hidden="true">&times;</span>`;
+                modal =`${modal}</button></div>`;
+                modal =`${modal}<div class="modal-body text-left">`;
+                for(let owner in data) modal = `${modal}${data[owner]}`;
+                  modal = `${modal}</div></div></div></div>`;
+                let span = `<span class="btn" data-toggle="modal" data-target="#ownersModal${id}">Show</span>`;
+                cell.innerHTML = `${span}${modal}`;
             }
             else if (field == 'notes'){
                 if (data == '') data = 'No Notes';
 
-                let modal = '<div class="modal" id="notesModal'+id+'" tabindex="-1" role="dialog" aria-hidden="true">'+
-                  '<div class="modal-dialog modal-dialog-centered" role="document">'+
-                  '<div class="modal-content">'+
-                  '<div class="modal-header">'+
-                    '<h6 class="modal-title">'+animal['name']+'</h6>'+
-                    '<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">'+
-                      '<span aria-hidden="true">&times;</span>'+
-                    '</button></div>'+
-                  '<div class="modal-body">';
-                  for(let note in data) modal += data[note];
-                  modal+='</div></div></div></div>';
-                let span = '<span class="btn" data-toggle="modal" data-target="#notesModal'+id+'">Show</span>';
-                cell.innerHTML = span + modal;
+                let modal = `<div class="modal" id="notesModal${id}" tabindex="-1" role="dialog" aria-hidden="true">`;
+                modal =`${modal}<div class="modal-dialog modal-dialog-centered" role="document">`
+                modal =`${modal}<div class="modal-content">`
+                modal =`${modal}<div class="modal-header">`
+                modal =`${modal}<h6 class="modal-title">${animal['name']}</h6>`
+                modal =`${modal}<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">`
+                modal =`${modal}<span aria-hidden="true">&times;</span>`
+                modal =`${modal}</button></div>`
+                modal =`${modal}<div class="modal-body text-left">`
+                  for(let note in data) modal = `${modal}${data[note]}`;
+                modal =`${modal}</div></div></div></div>`;
+                let span = `<span class="btn" data-toggle="modal" data-target="#notesModal${id}">Show</span>`;
+                cell.innerHTML = `${span}${modal}`;
             }
             else {
                 if (field == 'age') data = formatAge(data);
@@ -87,7 +87,7 @@ function calculateAge(data){
 
   function formatAge(data){
     let age = calculateAge(data);
-    data = '<span class=\"noWrap\">' + age[0] +  ' Years</span></br><span class=\"noWrap\">' + age[1] + ' Months</span>';
+    data = `<span class=\"noWrap\">${age[0]} Years</span></br><span class=\"noWrap\">${age[1]} Months</span>`;
     return data;
   }
   
@@ -105,3 +105,24 @@ function calculateAge(data){
   function switchFemaleSex(){
     if(document.getElementById('femaleFilter').checked){document.getElementById('maleFilter').checked = false;}
   }
+
+  function compareSize(a,b){
+    if (a == "S" && b != "S") return -1;
+    if (a == "M" && b == "L") return -1;
+    if (a == "M" && b == "G") return -1;
+    if (a == "L" && b == "G") return -1;
+    if (a == b) return 0;
+    return 1;
+  }
+
+function pagin(arry){
+  return arry.slice(0,9);
+}
+
+function sortName(arry){
+  return arry.sort(function(a,b){return compareString(a.name.toLowerCase(), b.name.toLowerCase());})
+}
+
+function sortBreed(arry){
+  return arry.breed(function(a,b){return compareString(a.breed.toLowerCase(), b.breed.toLowerCase());})
+}

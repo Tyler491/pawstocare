@@ -7,6 +7,7 @@
 <body">
            
     <?php include 'php/navbar.php';?>
+    <?php if($_SESSION['loggedin'] == false) echo '<div class="alert alert-danger text-center" role="alert"><strong>Not Logged In</strong></div>';?>
 
     <!--Paws to Care Page Header-->
     <h2 class="text-center my-4">Cats</h2>
@@ -113,7 +114,7 @@
     <link href="/css/style.css" type="text/css" rel="stylesheet">
     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) echo<<<EOT
     <script type="text/javascript" src="/javascript/tables.js"></script>
-    <script type="text/javascript" src="/javascript/cats.js"></script>-
+    <script type="text/javascript" src="/javascript/cats.js"></script>
 EOT;
     ?>
 </body>

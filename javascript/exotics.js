@@ -1,7 +1,7 @@
 
 let exotics = [];
 let displayExotics = [];
-let currentPage = 1;
+let currentPageExotics = 1;
 
 let nameSortDescend = false;
 let nameSortAscend = false;
@@ -211,41 +211,41 @@ function clearExotics(){
 }
 
 function paginate(){
-  let liString = '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage-1)+')">Previous</button></li>';
+  let liString = `<li class="page-item nav-li"><button class="page-link" onclick="newPage((${currentPageExotics-1}))">Previous</button></li>`;
   let ul = document.getElementById('ulPaginate');
   $(ul).empty();
   let pages = Math.floor(displayExotics.length/10);
   if (displayExotics.length%10 != 0) pages+=1;
 
   if(pages >= 5){
-    if(currentPage < 3){
+    if(currentPageExotics < 3){
       for(let i = 0; i < 5; i++){
-        if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</button></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</button></li>';
+        if(i+1 == currentPageExotics) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageExotics}</button></li>`;
+        else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${i+1})">${i+1}</button></li>`;
       }
     }
-    else if(currentPage > (pages - 2)){
+    else if(currentPageExotics > (pages - 2)){
       for(let i = pages - 4; i < pages + 1; i++){
-        if(i == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ currentPage + '</button></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + i + ')">'+ i + '</button></li>';
+        if(i == currentPageExotics) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageExotics}</button></li>`;
+        else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${i})">${i}</button></li>`;
       }
     }
     else{
       let pageIndex = -2;
       for(let i = 0; i < 5; i++){
-        if(i+1 == 3) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage + pageIndex++) + '</button></li>';
-        else liString += '<li class="page-item"><button class="page-link" onclick="newPage(' + (currentPage + pageIndex) + ')">'+ (currentPage + pageIndex++) + '</button></li>';
+        if(i+1 == 3) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageExotics + pageIndex++}</button></li>`;
+        else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${currentPageExotics + pageIndex})">${currentPageExotics + pageIndex++}</button></li>`;
       }
     }
   }
   else{
     for(let i = 0; i < pages; i++){
-      if(i+1 == currentPage) liString += '<li class="page-item active"><button class="page-link">'+ (currentPage) + '</button></li>';
-      else liString += '<li class="page-item"><button class="page-link" onclick="newPage('+(i+1)+')">'+ (i+1) + '</button></li>';
+      if(i+1 == currentPageExotics) liString = `${liString}<li class="page-item active"><button class="page-link">${currentPageExotics}</button></li>`;
+      else liString = `${liString}<li class="page-item"><button class="page-link" onclick="newPage(${i+1})">${i+1}</button></li>`;
     }
   }
 
-  liString += '<li class="page-item nav-li"><button class="page-link" onclick="newPage('+(currentPage+1)+')">Next</button></li>';
+  liString = `${liString}<li class="page-item nav-li"><button class="page-link" onclick="newPage(${currentPageExotics+1})">Next</button></li>`;
   ul.innerHTML = liString;
 }
 
@@ -257,7 +257,7 @@ function addSelect(){
   let selectPages = Math.floor(pages/10);
   
   for(let i = 0; i < selectPages; i++){
-    selectString += '<option class="page-link">'+((i+1)*10)+'</option>';
+    selectString = `${selectString}<option class="page-link">${(i+1)*10}</option>`;
   }
   selectPage.innerHTML = selectString;
 
@@ -276,8 +276,8 @@ function newPage(pageNumber){
   if (displayExotics.length%10 != 0) pages+=1;
 
   if (pageNumber > 0 && pageNumber < pages+1){
-    currentPage = pageNumber;
-    let startExotic = (currentPage-1)*10;
+    currentPageExotics = pageNumber;
+    let startExotic = (currentPageExotics-1)*10;
     fillTable(displayExotics.slice(startExotic,startExotic+9));
     addSelect();
     paginate();
