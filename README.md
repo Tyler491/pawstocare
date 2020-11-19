@@ -10,12 +10,12 @@ This is a semester long project for a Web Programming II course. This website de
 
 <h2>Technologies and Features:</h2>
 
-* jQuery
-* bootstrap
-* Jasmine Unit Testing
+* [jQuery](https://jquery.com/)
+* [bootstrap](https://getbootstrap.com/)
+* [Jasmine Unit Testing](https://jasmine.github.io/)
 * PHP and DB integration
 * User Login with Encryption and Salt
-* Deployed to Docker Host
+* Deployed to [Docker](https://www.docker.com/) Host
 
 
 
