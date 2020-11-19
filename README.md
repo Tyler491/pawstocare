@@ -6,21 +6,21 @@ Files should be placed in the appropriate location on the server. For apache it 
 
 
 <h2>What has been done so far:</h2>
--Created database with fake data for owners, animals, and notes
--Added custom css to make website look better
--Converted html pages to php
--Created one universal navbar
--Added login drop down menu
--Formatted checks and x's in tables
--Add pagination for tables
--Add authentication for owners and admins
--Format notes for tables
--Create owners page (server side rendering)
--Create test suite using jasmine
--Finalize project
+*Created database with fake data for owners, animals, and notes
+*Added custom css to make website look better
+*Converted html pages to php
+*Created one universal navbar
+*Added login drop down menu
+*Formatted checks and x's in tables
+*Add pagination for tables
+*Add authentication for owners and admins
+*Format notes for tables
+*Create owners page (server side rendering)
+*Create test suite using jasmine
+*Finalize project
 
 <h2>What still needs to be done:
--All finished
+*All finished
 
 
 
@@ -31,9 +31,9 @@ The current database is using the admin account username: tyler and password: 43
 Animals and Owner tables now are paginated to 10 animals a page. HTML selection dropdown element will select a page that is a multiple of 10. There are also previous and next buttons for single page navigation.
 
 Website was developed and tested on a LAMP server(tested using docker). 
-- Linux (debian)
-- Apache2 server
-- PHP 7.0
-- mySQL 5.7
+* Linux (debian)
+* Apache2 server
+* PHP 7.0
+* mySQL 5.7
 
 
