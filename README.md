@@ -4,7 +4,7 @@
 
 <h2>Technologies Used:</h2>
 
-* HTML/CSS(bootstrap)/Javascript
+* HTML/CSS (*jQuery, bootstrap*)/Javascript
 * PHP 7.0
 * mySQL 5.7
 
