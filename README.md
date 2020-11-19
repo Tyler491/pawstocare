@@ -7,6 +7,7 @@
 * HTML/CSS (*jQuery, bootstrap*)/Javascript
 * PHP 7.0
 * mySQL 5.7
+* Jasmine Unit Testing
 
 
 <h2>How to Implement:</h2>
