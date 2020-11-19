@@ -15,7 +15,7 @@ This is a semester long project for a Web Programming II course. This website de
 * Jasmine Unit Testing
 * PHP and DB integration
 * User Login with Encryption and Salt
-* Deployed using Docker
+* Hosted using Docker
 
 
 
