@@ -2,26 +2,31 @@
 
 ![Paws to Care Logo](images/logo.png)
 
+<h2>About:</h2>
+
+This is a semester long project for a Web Programming II course. This website demonstrates my skills with basic web development such as html/css/javascript and more advanced PHP and database programming showing full stack development. The website is a mock-up of a veterinary clinic where users can login and get information on their pets and faculty can access all information. Progress was tracked using milestones and one-on-one meetings with the instructor (client).
+
+*Note:* The first version of the website used server-side rendering for the DB tables but was then later switched to client-side rendering to show the difference in loading speed for the webpages vs the tables on webpages.
+
 <h2>Technologies and Features:</h2>
 
 * jQuery
 * bootstrap
 * Jasmine Unit Testing
 * PHP and DB integration
-* User Loggin with Encryption and Salt
+* User Login with Encryption and Salt
+* Deployed using Docker
 
 
 
 <h2>How to Implement:</h2>
 
-Files should be placed in the appropriate location on the server. For apache it is usually /var/www/html or just /var/www. PHP 7.0 should be installed on the machine as well as mySQL 5.7. Included is a creation script for mySql table creation called dbCreation.sql. It will create an admin tyler with password 4321 but this can be changed in the file. From there, migrate Paws to Care existing data to the database. Any further questions can be directed to me.
-
-
+Files should be placed in the appropriate location on the server. For apache it is usually /var/www/html or just /var/www. PHP 7.0 should be installed on the machine as well as mySQL 5.7. Included is a creation script for mySQL table creation called dbCreation.sql. It will create an admin tyler with password 4321 but this can be changed in the file. From there, migrate Paws to Care existing data to the database. Any further questions can be directed to me.
 
 <h2>What has been done so far:</h2>
 
 * Created database with fake data for owners, animals, and notes
-* Added custom css to make website visualy pleasing
+* Added custom css to make website visually  pleasing
 * Converted html pages to php
 * Created one universal navbar
 * Added login drop down menu
