@@ -21,6 +21,7 @@ Files should be placed in the appropriate location on the server. For apache it 
 * Finalize project
 
 <h2>What still needs to be done:</h2>
+
 * All finished
 
 
