@@ -2,12 +2,14 @@
 
 ![Paws to Care Logo](images/logo.png)
 
-<h2>Technologies Used:</h2>
+<h2>Technologies and Features:</h2>
 
-* HTML/CSS (*jQuery, bootstrap*)/Javascript
-* PHP 7.0
-* mySQL 5.7
+* jQuery
+* bootstrap
 * Jasmine Unit Testing
+* PHP and DB integration
+* User Lggin with Encryption and Salt
+
 
 
 <h2>How to Implement:</h2>
@@ -19,7 +21,7 @@ Files should be placed in the appropriate location on the server. For apache it 
 <h2>What has been done so far:</h2>
 
 * Created database with fake data for owners, animals, and notes
-* Added custom css to make website look better
+* Added custom css to make website visualy pleasing
 * Converted html pages to php
 * Created one universal navbar
 * Added login drop down menu
