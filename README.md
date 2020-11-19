@@ -6,6 +6,7 @@ Files should be placed in the appropriate location on the server. For apache it 
 
 
 <h2>What has been done so far:</h2>
+
 * Created database with fake data for owners, animals, and notes
 * Added custom css to make website look better
 * Converted html pages to php
@@ -19,7 +20,7 @@ Files should be placed in the appropriate location on the server. For apache it 
 * Create test suite using jasmine
 * Finalize project
 
-<h2>What still needs to be done:
+<h2>What still needs to be done:</h2>
 * All finished
 
 
