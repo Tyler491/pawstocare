@@ -8,7 +8,7 @@
 * bootstrap
 * Jasmine Unit Testing
 * PHP and DB integration
-* User Lggin with Encryption and Salt
+* User Loggin with Encryption and Salt
 
 
 
