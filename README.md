@@ -1,5 +1,6 @@
 <h1>Paws to Care Website README</h1>
-![Test](images/logo.png)
+
+![Paws to Care Logo](images/logo.png)
 
 <h2>How to Implement:</h2>
 Files should be placed in the appropriate location on the server. For apache it is usually /var/www/html or just /var/www. PHP 7.0 should be installed on the machine as well as mySQL 5.7. Included is a creation script for mySql table creation called dbCreation.sql. It will create an admin tyler with password 4321 but this can be changed in the file. From there, migrate Paws to Care existing data to the database. Let me know if you have any questions regarding the process.
