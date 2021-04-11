@@ -6,7 +6,7 @@
 
 This is a semester long project for a Web Programming II course. This website demonstrates my skills with basic web development such as html/css/javascript and more advanced PHP and database programming showing full stack development. The website is a mock-up of a veterinary clinic where users can login and get information on their pets and faculty can access all information. Progress was tracked using milestones and one-on-one meetings with the instructor (client).
 
-*Note:* The first version of the website used server-side rendering for the DB tables but was then later switched to client-side rendering to show the difference in speed between getting a new page with the sorted table from the server and sorting the table on the same page.
+*Note:* The first version of the website used server-side rendering for the DB tables but was then later switched to client-side rendering to show the difference in speed between fetching a new page with the sorted table from the server verses sorting the table on the same page.
 
 <h2>Technologies and Features:</h2>
 
